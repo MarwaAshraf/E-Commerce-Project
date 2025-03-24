@@ -27,8 +27,26 @@ public class HomePage {
     public By Twitter_btn = By.xpath("//*[@id=\"page_wrapper\"]/footer/ul/li[1]/a");
     public By Facebook_btn = By.xpath("//*[@id=\"page_wrapper\"]/footer/ul/li[2]/a");
     public By Likedin_btn = By.xpath("//*[@id=\"page_wrapper\"]/footer/ul/li[3]/a");
+    public By addToCartButtons =By.xpath("//button[text()='Add to cart']") ;
+    public By removeButtons = By.xpath("//button[text()='Remove']");
+    public By inventoryContainer = By.id("inventory_container");
+    
+    List<WebElement>removedbuttons=
+    
 
     //Lists of items elements
+    public boolean isInventoryDisplayed(){
+       return driver.findElement(inventoryContainer).isDisplayed();
+    }
+    public int getInventoryItemCount(){
+       return driver.findElements(By.className("inventory_item")).size();
+   }
+    public List<WebElement> GetaddtocartButtons(){
+        return driver.findElements(addToCartButtons);
+    }
+    public List<WebElement> GetremovesButtons(){
+        return driver.findElements(By.xpath("//button[text()='Remove']"));
+    }
 
     public List<WebElement> getItemsName() {
         return driver.findElements(By.className("inventory_item_name"));
