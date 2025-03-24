@@ -31,7 +31,7 @@ public class HomePage {
     public By removeButtons = By.xpath("//button[text()='Remove']");
     public By inventoryContainer = By.id("inventory_container");
     
-    List<WebElement>removedbuttons=
+    
     
 
     //Lists of items elements
@@ -46,6 +46,26 @@ public class HomePage {
     }
     public List<WebElement> GetremovesButtons(){
         return driver.findElements(By.xpath("//button[text()='Remove']"));
+    }
+   public void clickAllAddToCartButtons() {
+        List<WebElement> addButtons = driver.findElements(addToCartButtons);
+
+        System.out.println("Total Add to Cart buttons found: " + addButtons.size());
+
+        for (WebElement button : addButtons) {
+            button.click();
+        }
+    }
+   public int getRemoveButtonsCount() {
+        return driver.findElements(removeButtons).size();
+    }
+    public int getCartItemCount() {
+        try {
+            WebElement cartBadgeElement = driver.findElement(Cart_Btn);
+            return Integer.parseInt(cartBadgeElement.getText());
+        } catch (Exception e) {
+            return 0; // No badge means no items in the cart
+        }
     }
 
     public List<WebElement> getItemsName() {
